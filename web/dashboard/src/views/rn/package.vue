@@ -294,21 +294,76 @@ export default {
     },
     components: { rnEdit },
     created () {
+        console.log('rn package ====');
         this.getPackages();
     },
     methods: {
         async getPackages () {
             this.inSearch = true;
-
-            let response = await http.get('/package', {
-                params: {
-                    page: this.currentPage,
-                    pageSize: this.pageSize,
-                    rnName: this.queryParams.rnName,
-                    rnNickName: this.queryParams.rnNickName,
-                    rnStatus: this.queryParams.rnStatus
+            console.log('czy---');
+            // let response = await http.get('/package', {
+            //     params: {
+            //         page: this.currentPage,
+            //         pageSize: this.pageSize,
+            //         rnName: this.queryParams.rnName,
+            //         rnNickName: this.queryParams.rnNickName,
+            //         rnStatus: this.queryParams.rnStatus
+            //     }
+            // });
+            let response = {
+                'data': {
+                    'code': 200,
+                    'data': {
+                        'total': 50,
+                        'current': 1,
+                        'records': [
+                            {
+                                'id': 1,
+                                'rnName': 'yh-delivery-main',
+                                'rnVersion': '2.1.1',
+                                'rnNickName': 'rnNickName',
+                                'rnType': 1,
+                                'versionMin': '1.1.1',
+                                'versionMax': '2.1.1',
+                                'resourceUrl': 'http://',
+                                'rnSize': 0,
+                                'rnUpdateLog': 'rnUpdateLog',
+                                'updatedTime': 1588233543000,
+                                'rnStatus': 1
+                            },
+                            {
+                                'id': 2,
+                                'rnName': 'yh-delivery-main',
+                                'rnVersion': '2.1.1',
+                                'rnNickName': 'rnNickName',
+                                'rnType': 1,
+                                'versionMin': '1.1.1',
+                                'versionMax': '2.1.1',
+                                'resourceUrl': 'http://',
+                                'rnSize': 0,
+                                'rnUpdateLog': 'rnUpdateLog',
+                                'updatedTime': 1588233543000,
+                                'rnStatus': 0
+                            },
+                            {
+                                'id': 3,
+                                'rnName': 'yh-delivery-main',
+                                'rnVersion': '2.1.1',
+                                'rnNickName': 'rnNickName',
+                                'rnType': 1,
+                                'versionMin': '1.1.1',
+                                'versionMax': '2.1.1',
+                                'resourceUrl': 'http://',
+                                'rnSize': 0,
+                                'rnUpdateLog': 'rnUpdateLog',
+                                'updatedTime': 1588233543000,
+                                'rnStatus': 2
+                            }
+                        ]
+                    }
                 }
-            });
+            };
+
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;

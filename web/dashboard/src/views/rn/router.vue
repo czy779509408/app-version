@@ -230,23 +230,32 @@ export default {
     },
     components: { rnEdit },
     created () {
+        console.log('rn router')
         this.getRoutes();
     },
     filters: {},
     methods: {
         async getRoutes () {
+            console.log('rn router')
             this.inSearch = true;
 
-            let response = await http.get('/route', {
-                params: {
-                    page: this.currentPage,
-                    pageSize: this.pageSize,
-                    routeName: this.queryParams.routeName,
-                    routeKey: this.queryParams.routeKey,
-                    routeValue: this.queryParams.routeValue,
-                    routeStatus: this.queryParams.routeStatus
+            // let response = await http.get('/route', {
+            //     params: {
+            //         page: this.currentPage,
+            //         pageSize: this.pageSize,
+            //         routeName: this.queryParams.routeName,
+            //         routeKey: this.queryParams.routeKey,
+            //         routeValue: this.queryParams.routeValue,
+            //         routeStatus: this.queryParams.routeStatus
+            //     }
+            // });
+            let response = {
+                'data': {
+                    'data': {
+
+                    }
                 }
-            });
+            };
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;

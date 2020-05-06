@@ -22,15 +22,15 @@
                         <span>RN管理</span>
                     </template>
                     <MenuItem name="rn-package">RN包管理</MenuItem>
-                    <MenuItem name="rn-router">RN路由管理</MenuItem>
+                    <!--<MenuItem name="rn-router">RN路由管理</MenuItem>-->
                 </Submenu>
-                <Submenu name="capi">
-                    <template slot="title">
-                        <Icon type="md-contract"></Icon>
-                        <span>自定义接口</span>
-                    </template>
-                    <MenuItem name="capi-list">接口设置</MenuItem>
-                </Submenu>
+                <!--<Submenu name="capi">-->
+                    <!--<template slot="title">-->
+                        <!--<Icon type="md-contract"></Icon>-->
+                        <!--<span>自定义接口</span>-->
+                    <!--</template>-->
+                    <!--<MenuItem name="capi-list">接口设置</MenuItem>-->
+                <!--</Submenu>-->
                 <Submenu name="admin" v-if="admin">
                     <template slot="title">
                         <Icon type="ios-people" />
@@ -49,7 +49,7 @@
                     <MenuItem name="manual-ios">iOS 版本</MenuItem>
                     <MenuItem name="manual-channel">添加渠道</MenuItem>
                     <MenuItem name="manual-package">添加 RN 包</MenuItem>
-                    <MenuItem name="manual-router">添加 RN 路由</MenuItem>
+                    <!--<MenuItem name="manual-router">添加 RN 路由</MenuItem>-->
                     <MenuItem name="manual-type">更新类型说明</MenuItem>
                 </Submenu>
             </Menu>

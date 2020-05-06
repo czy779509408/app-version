@@ -1,4 +1,4 @@
-<script src="../../../../../../report/src/main.js"></script>
+<!--<script src="../../../../../../report/src/main.js"></script>-->
 <template>
     <div id="rn-edit">
         <Form ref="editFormRule" :model="editForm" :rules="editFormRule" :label-width="110" style="position: relative">
@@ -97,7 +97,7 @@
 <script>
     import { isLogin, getApp, getAppId, getApps, switchApp } from '@/libs/account';
 	import {http, hasValue, fmtFileSize, getGUID, getFileName} from '@/libs/util';
-	import uploadFileToOSS from '@/libs/oss';
+	// import uploadFileToOSS from '@/libs/oss';
 
 	export default {
 		name: 'rn-edit',
@@ -204,10 +204,10 @@
 		},
 		methods: {
 			async getVersions() {
-				let iosData = await http.get('/ios/versions');
-				let androidData = await http.get('/android/versions');
-				this.iosVersionList = iosData.data.data;
-				this.androidVersionList = androidData.data.data;
+				// let iosData = await http.get('/ios/versions');
+				// let androidData = await http.get('/android/versions');
+				this.iosVersionList = ['1.1.1', '1.2.1'];
+				this.androidVersionList = ['2.1.1', '2.2.1'];
 				this.versionList = this.rnType === 1 ? this.androidVersionList : this.iosVersionList;
 			},
 			async postPackage() {
@@ -244,7 +244,25 @@
 			},
 			async getPackage() {
 				await this.getVersions();
-				let response = await http.get('package/' + this.rnId);
+				// let response = await http.get('package/' + this.rnId);
+                let response = {
+                    data: {
+                        code: 200,
+                        data: {
+                            rnName: '',
+                            rnNickName: '',
+                            rnType: 1,
+                            resourceUrl: '',
+                            rnSize: 111,
+                            rnVersion: '',
+                            rnUpdateLog: '',
+                            rnStatus: 1,
+                            versionMin: '',
+                            versionMax: ''
+                        }
+                    }
+                };
+
 				if (response.data.code !== 200) {
 					this.$Notice.error({
 						title: '错误',
@@ -285,32 +303,32 @@
 				let fileData = getFileName(file.name);
 				this.fileItem.name = `${this.appId}-${this.editForm.rnName}-${fileData.name}-${this.editForm.rnVersion}.${fileData.ext}`;
 				let guid = this.fileItem.guid;
-				uploadFileToOSS(file, this.fileItem.name, response => {
-					if (guid !== this.fileItem.guid) return false;
-					this.editForm.resourceUrl = response.res.requestUrls[0];
-					this.editForm.rnSize = file.size / 1024;
-					this.fileItem = {
-						name: '',
-						progress: 0,
-						guid: getGUID()
-					};
-
-					// 手动触发事件隐藏未填报错
-					// 可能影响用户体验，因为在用户上传同时如果正在编辑更新日志，可能导致输入焦点切换让输入终止造成不良体验。
-
-					// setTimeout(() => {
-					//     this.$refs.editFormRule.$children.find(item => {
-					//         if (item.prop === 'resourceUrl') {
-					//             console.log(item.$el.getElementsByTagName('input')[0]);
-					//             item.$el.getElementsByTagName('input')[0].focus();
-					//             item.$el.getElementsByTagName('input')[0].blur();
-					//         }
-					//     });
-					// }, 0);
-				}, progress => {
-					if (guid !== this.fileItem.guid) return false;
-					this.$set(this.fileItem, 'progress', parseInt(progress));
-				});
+				// uploadFileToOSS(file, this.fileItem.name, response => {
+				// 	if (guid !== this.fileItem.guid) return false;
+				// 	this.editForm.resourceUrl = response.res.requestUrls[0];
+				// 	this.editForm.rnSize = file.size / 1024;
+				// 	this.fileItem = {
+				// 		name: '',
+				// 		progress: 0,
+				// 		guid: getGUID()
+				// 	};
+                //
+				// 	// 手动触发事件隐藏未填报错
+				// 	// 可能影响用户体验，因为在用户上传同时如果正在编辑更新日志，可能导致输入焦点切换让输入终止造成不良体验。
+                //
+				// 	// setTimeout(() => {
+				// 	//     this.$refs.editFormRule.$children.find(item => {
+				// 	//         if (item.prop === 'resourceUrl') {
+				// 	//             console.log(item.$el.getElementsByTagName('input')[0]);
+				// 	//             item.$el.getElementsByTagName('input')[0].focus();
+				// 	//             item.$el.getElementsByTagName('input')[0].blur();
+				// 	//         }
+				// 	//     });
+				// 	// }, 0);
+				// }, progress => {
+				// 	if (guid !== this.fileItem.guid) return false;
+				// 	this.$set(this.fileItem, 'progress', parseInt(progress));
+				// });
 
 				// 不使用组件自身上传功能
 				return false;

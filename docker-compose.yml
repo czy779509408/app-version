@@ -1,7 +1,7 @@
 version : '3'
 services:
   mysql:
-    image: mysql/mysql-server:5.7.18
+    image: mysql/mysql-server:8.0.15
     container_name: mysql
     networks:
       - net-spring-db

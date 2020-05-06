@@ -53,17 +53,29 @@ export default {
         };
     },
     async created () {
-        if (this.isLogin === false) {
-            this.$router.push({
-                name: 'login'
-            });
-            return false;
-        }
+        // if (this.isLogin === false) {
+        //     this.$router.push({
+        //         name: 'login'
+        //     });
+        //     return false;
+        // }
 
-        let apps = await getApps();
-        if (apps) { this.appList = apps; }
-
-        console.log(this.apps);
+        // let apps = await getApps();
+        // if (apps) { this.appList = apps; }
+        //
+        // console.log(this.apps);
+        this.appList = [
+            {
+                appId: '11',
+                appName: '大管家',
+                tenantAppId: '222'
+            },
+            {
+                appId: '111',
+                appName: '辉翔',
+                tenantAppId: '221'
+            }
+        ]
     },
     mounted () {
 
@@ -79,7 +91,14 @@ export default {
         },
         async handelCloseEdit () {
             this.inAdd = false;
-            let apps = await getApps();
+            // let apps = await getApps();
+            let apps = [
+                {
+                    'appId': '',
+                    'appName': '',
+                    'tenantAppId': ''
+                }
+            ];
             if (apps) { this.appList = apps; }
         }
     }

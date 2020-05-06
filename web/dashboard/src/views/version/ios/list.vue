@@ -390,21 +390,43 @@ export default {
     methods: {
         async getIOSs () {
             this.inLoading = true;
-            let response = await http.get('/ios', {
-                params: {
-                    page: this.currentPage,
-                    pageSize: this.pageSize,
-                    appVersion: this.queryParams.appVersion,
-                    updateType:
-						this.queryParams.updateType === undefined
-						    ? null
-						    : this.queryParams.updateType,
-                    versionStatus:
-						this.queryParams.versionStatus === undefined
-						    ? null
-						    : this.queryParams.versionStatus
+            // let response = await http.get('/ios', {
+            //     params: {
+            //         page: this.currentPage,
+            //         pageSize: this.pageSize,
+            //         appVersion: this.queryParams.appVersion,
+            //         updateType:
+				// 		this.queryParams.updateType === undefined
+				// 		    ? null
+				// 		    : this.queryParams.updateType,
+            //         versionStatus:
+				// 		this.queryParams.versionStatus === undefined
+				// 		    ? null
+				// 		    : this.queryParams.versionStatus
+            //     }
+            // });
+            let response = {
+                'data': {
+                    'code': 200,
+                    'data': {
+                        'total': 50,
+                        'current': 1,
+                        'records': [
+                            {'id': 1,
+                                'appVersion': '3.5.6',
+                                'allowLowestVersion': '2.1.1',
+                                'updateType': 'updateType',
+                                'versionDescription': 'versionDescription',
+                                'versionStatus': 0,
+                                'grayReleased': 0,
+                                'createdTime': 1588233543000,
+                                'createdBy': 'xxx'
+                            }
+                        ]
+                    }
                 }
-            });
+            };
+
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;

@@ -183,7 +183,20 @@ export default {
     methods: {
         async getIOS () {
             this.inLoading = true;
-            let response = await http.get('/ios/' + this.iOSId);
+            // let response = await http.get('/ios/' + this.iOSId);
+            let response = {
+                data: {
+                    code: 200,
+                    data: {
+                        appVersion: '',
+                        allowLowestVersion: '',
+                        updateType: 2,
+                        appStoreUrl: '',
+                        versionDescription: '',
+                        grayReleased: 1
+                    }
+                }
+            };
 
             if (response.data.code === 200) {
                 this.editForm = {

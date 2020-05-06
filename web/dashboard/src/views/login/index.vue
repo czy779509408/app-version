@@ -31,11 +31,10 @@
     </div>
 </template>
 <script>
-import { setAdmin, setLogin } from '@/libs/account';
-import { http } from '@/libs/util';
-import md5 from 'js-md5';
+    import {setAdmin, setLogin} from '@/libs/account';
+    import {http} from '@/libs/util';
 
-export default {
+    export default {
     data () {
         return {
             loading: false,
@@ -45,54 +44,57 @@ export default {
     },
     methods: {
         handleSubmit () {
-            this.loading = true;
-            if(!this.phone || !this.password){
-                this.$Message.warning('请将必填项填写完整');
-                this.loading = false;
-                return;
-            }
-            this.phone = this.phone.trim()
-            this.password = this.password.trim()
-            if(this.phone.length !== 11 || isNaN(Number(this.phone))){
-                this.$Message.warning('请输入正确的手机号');
-                this.loading = false;
-                return;
-            }
-            if(this.password.length < 6 || this.password.length > 32){
-                this.$Message.warning('密码长度为6-32');
-                this.loading = false;
-                return;
-            }
-            let that = this;
-            http.post('/user/login',{
-                phone: this.phone,
-                password: md5(this.password),
-            })
-                .then(resp => {
-                    if(resp.data.code!=200){
-                        this.$Notice.error({
-                            title: '登录失败',
-                            desc: resp.data.message
-                        });
-                    }else{
-                        this.$Notice.success({
-                            title: '登录成功'
-                        });
-                        setLogin(resp.data.data);
-                        setAdmin(resp.data.data.isAdmin === 1);
-                        this.$router.push({
-                            name: 'switch-app'
-                        });
-                    }
-                    that.loading =false;
-                })
-                .catch(function (error) {
-                    this.$Notice.error({
-                        title: '登录失败',
-                        desc: error
-                    });
-                    that.loading =false;
-                });
+            this.$router.push({
+                name: 'switch-app'
+            });
+            // this.loading = true;
+            // if(!this.phone || !this.password){
+            //     this.$Message.warning('请将必填项填写完整');
+            //     this.loading = false;
+            //     return;
+            // }
+            // this.phone = this.phone.trim()
+            // this.password = this.password.trim()
+            // if(this.phone.length !== 11 || isNaN(Number(this.phone))){
+            //     this.$Message.warning('请输入正确的手机号');
+            //     this.loading = false;
+            //     return;
+            // }
+            // if(this.password.length < 6 || this.password.length > 32){
+            //     this.$Message.warning('密码长度为6-32');
+            //     this.loading = false;
+            //     return;
+            // }
+            // let that = this;
+            // http.post('/user/login',{
+            //     phone: this.phone,
+            //     password: md5(this.password),
+            // })
+            //     .then(resp => {
+            //         if(resp.data.code!=200){
+            //             this.$Notice.error({
+            //                 title: '登录失败',
+            //                 desc: resp.data.message
+            //             });
+            //         }else{
+            //             this.$Notice.success({
+            //                 title: '登录成功'
+            //             });
+            //             setLogin(resp.data.data);
+            //             setAdmin(resp.data.data.isAdmin === 1);
+            //             this.$router.push({
+            //                 name: 'switch-app'
+            //             });
+            //         }
+            //         that.loading =false;
+            //     })
+            //     .catch(function (error) {
+            //         this.$Notice.error({
+            //             title: '登录失败',
+            //             desc: error
+            //         });
+            //         that.loading =false;
+            //     });
         },
         goToRegister() {
             this.$router.push({

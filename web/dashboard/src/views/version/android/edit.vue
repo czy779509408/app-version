@@ -181,7 +181,19 @@ export default {
     methods: {
         async getAndroid () {
             this.inLoading = true;
-            let response = await http.get('/android/' + this.androidId);
+            // let response = await http.get('/android/' + this.androidId);
+            let response = {
+                data: {
+                    code: 200,
+                    data: {
+                        appVersion: '',
+                        allowLowestVersion: '',
+                        updateType: 1,
+                        versionDescription: '',
+                        grayReleased: 1
+                    }
+                }
+            };
 
             if (response.data.code === 200) {
                 this.editForm = {

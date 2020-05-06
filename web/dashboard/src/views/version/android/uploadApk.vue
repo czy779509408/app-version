@@ -78,7 +78,7 @@ import {
     getGUID,
     hasValue
 } from '@/libs/util';
-import uploadFileToOSS from '@/libs/oss';
+// import uploadFileToOSS from '@/libs/oss';
 export default {
     name: 'upload-apk',
     props: {
@@ -93,13 +93,16 @@ export default {
         }
     },
     data () {
+        console.log('czy upload data');
         return {
             channelCodes: [],
             channelsLoading: false,
             fileList: []
         };
     },
-    created () {},
+    created () {
+        console.log('czy upload created');
+    },
     methods: {
         getChannels (channelCode) {
             if (this.channelsLoading) {
@@ -208,19 +211,19 @@ export default {
             /**
 			 * 上传至OSS
 			 */
-            uploadFileToOSS(
-                file.file,
-                file.name,
-                response => {
-                    /**
-					 * 创建 Apk
-					 */
-                    this.postApk(file, response.res.requestUrls[0]);
-                },
-                progress => {
-                    file.percent = parseInt(progress) - 1 < 0 ? 0 : parseInt(progress) - 1;
-                }
-            );
+            // uploadFileToOSS(
+            //     file.file,
+            //     file.name,
+            //     response => {
+            //         /**
+				// 	 * 创建 Apk
+				// 	 */
+            //         this.postApk(file, response.res.requestUrls[0]);
+            //     },
+            //     progress => {
+            //         file.percent = parseInt(progress) - 1 < 0 ? 0 : parseInt(progress) - 1;
+            //     }
+            // );
         },
         stopUpload (file, index) {
             file.disabled = false;
