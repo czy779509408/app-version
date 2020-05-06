@@ -116,7 +116,7 @@ export default {
             isEdit: false,
             iOSId: 0,
             inLoading: false,
-            app: JSON.parse(localStorage.getItem('app') ? localStorage.getItem('app') : '{}'),
+            app: { appName: '大管家'},//JSON.parse(localStorage.getItem('app') ? localStorage.getItem('app') : '{}'),
             editForm: {
                 appVersion: '',
                 allowLowestVersion: '',

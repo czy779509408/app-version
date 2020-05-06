@@ -119,7 +119,7 @@ export default {
             isEdit: false,
             androidId: 0,
             inLoading: false,
-            app: JSON.parse(localStorage.getItem('app') ? localStorage.getItem('app') : '{}'),
+            app: { appName: '大管家'},//JSON.parse(localStorage.getItem('app') ? localStorage.getItem('app') : '{}'),
             editForm: {
                 appVersion: '',
                 allowLowestVersion: '',
@@ -180,6 +180,7 @@ export default {
     },
     methods: {
         async getAndroid () {
+            console.log('czy getAndroid');
             this.inLoading = true;
             // let response = await http.get('/android/' + this.androidId);
             let response = {
