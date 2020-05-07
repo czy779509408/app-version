@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Notice } from 'iview';
 import Vue from 'vue';
 import { hasObject, hasValue } from './util';
-import { clearCurrentApp, getAppId, getUser, appId } from './account';
+import { clearCurrentApp, getAppId, getUser } from './account';
 
 const ajax = axios.create({
     baseURL: process.env.VUE_APP_HTTP_API,

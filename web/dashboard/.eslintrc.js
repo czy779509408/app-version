@@ -15,6 +15,7 @@ module.exports = {
         "no-unused-vars": "off",
         "spaced-comment": 0,
         "comma-spacing": 0,
+        "key-spacing": 0,
         "object-curly-spacing": 0,
         "no-tabs": "off",
         "no-mixed-spaces-and-tabs": "off",

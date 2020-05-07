@@ -66,14 +66,14 @@ export default {
         // console.log(this.apps);
         this.appList = [
             {
-                appId: '11',
+                appId: '1',
                 appName: '大管家',
-                tenantAppId: '222'
+                tenantAppId: 'super-partner'
             },
             {
-                appId: '111',
+                appId: '2',
                 appName: '辉翔',
-                tenantAppId: '221'
+                tenantAppId: 'delivery'
             }
         ];
     },
@@ -92,14 +92,14 @@ export default {
         async handelCloseEdit () {
             this.inAdd = false;
             // let apps = await getApps();
-            let apps = [
-                {
-                    'appId': '',
-                    'appName': '',
-                    'tenantAppId': ''
-                }
-            ];
-            if (apps) { this.appList = apps; }
+            // let apps = [
+            //     {
+            //         'appId': '',
+            //         'appName': '',
+            //         'tenantAppId': ''
+            //     }
+            // ];
+            // if (apps) { this.appList = apps; }
         }
     }
 };
@@ -155,7 +155,7 @@ export default {
                 position: absolute;
                 font-size: 80px;
                 font-weight: bold;
-                color: rgba(249, 249, 249, 0.78);
+                color: rgba(180, 180, 180, 0.78);
                 right: 12px;
                 line-height: .7;
                 z-index: 0;

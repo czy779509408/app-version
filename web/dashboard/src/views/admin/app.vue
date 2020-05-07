@@ -61,7 +61,7 @@ export default {
                     width: 140
                 },
                 {
-                    title: '租户AppId',
+                    title: '产品AppId',
                     minWidth: 140,
                     key: 'tenantAppId'
                 },
@@ -85,20 +85,20 @@ export default {
                     fixed: 'right',
                     render: (h, params) => {
                         return h('div', [
-                            h('Button', {
-                                props: {
-                                    type: 'primary',
-                                    size: 'small'
-                                },
-                                style: {
-                                    marginRight: '12px'
-                                },
-                                on: {
-                                    click: () => {
-                                        this.editBot(params.row.id);
-                                    }
-                                }
-                            }, '钉钉群机器人'),
+                            // h('Button', {
+                            //     props: {
+                            //         type: 'primary',
+                            //         size: 'small'
+                            //     },
+                            //     style: {
+                            //         marginRight: '12px'
+                            //     },
+                            //     on: {
+                            //         click: () => {
+                            //             this.editBot(params.row.id);
+                            //         }
+                            //     }
+                            // }, '钉钉群机器人'),
                             h('Button', {
                                 props: {
                                     type: 'primary',
@@ -154,13 +154,31 @@ export default {
     methods: {
         async getApps () {
             this.inLoading = true;
-            let response = await http.get('/admin/app/list', {
-                params: {
-                    page: this.currentPage,
-                    pageSize: this.pageSize,
-                    appName: this.queryParams.appName
+            // let response = await http.get('/admin/app/list', {
+            //     params: {
+            //         page: this.currentPage,
+            //         pageSize: this.pageSize,
+            //         appName: this.queryParams.appName
+            //     }
+            // });
+            let response = {
+                'data': {
+                    'code': 200,
+                    'data': {
+                        'total': 9,
+                        'current': 1,
+                        'records': [
+                            {
+                                'id': 1,
+                                'appName': '管家',
+                                'tenantAppId': 211,
+                                'createdTime': 1588233543000,
+                                'createdBy': 'xxx'
+                            }
+                        ]
+                    }
                 }
-            });
+            };
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;

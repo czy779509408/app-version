@@ -4,7 +4,7 @@
             <FormItem label="应用名称" prop="appName">
                 <Input v-model="editForm.appName" placeholder=""/>
             </FormItem>
-            <FormItem label="租户 AppId" prop="tenantAppId">
+            <FormItem label="产品 AppId" prop="tenantAppId">
                 <Input v-model="editForm.tenantAppId" placeholder=""/>
             </FormItem>
         </Form>
@@ -51,7 +51,7 @@ export default {
                     { required: true, validator: validateInput, trigger: 'blur' }
                 ],
                 tenantAppId: [
-                    { required: true, message: '请输入租户 AppId', trigger: 'blur' },
+                    { required: true, message: '请输入产品 AppId', trigger: 'blur' },
                     { required: true, validator: validateInput, trigger: 'blur' }
                 ]
             },

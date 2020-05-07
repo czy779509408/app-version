@@ -53,7 +53,7 @@ export default {
                     key: 'id'
                 },
                 {
-                    title: '应用名称(租户AppId)',
+                    title: '应用名称(产品AppId)',
                     render (h, params) {
                         return h('div', [
                             h('span', params.row.appName),
