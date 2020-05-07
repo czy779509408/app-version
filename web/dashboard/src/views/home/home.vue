@@ -75,7 +75,7 @@ export default {
                 appName: '辉翔',
                 tenantAppId: '221'
             }
-        ]
+        ];
     },
     mounted () {
 

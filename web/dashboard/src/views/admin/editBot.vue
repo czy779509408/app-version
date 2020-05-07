@@ -9,9 +9,9 @@
                 <Poptip placement="right-start" trigger="hover">
                     如何得到WebHook？
                     <div class="api" slot="content">
-                        <video src="~@/video/bot-help.mp4" width="500px" loop muted controls autoplay>
-                            您的浏览器不支持 video 标签。
-                        </video>
+                        <!--<video src="~@/video/bot-help.mp4" width="500px" loop muted controls autoplay>-->
+                            <!--您的浏览器不支持 video 标签。-->
+                        <!--</video>-->
                     </div>
                 </Poptip>
             </FormItem>

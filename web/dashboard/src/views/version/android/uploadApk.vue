@@ -216,8 +216,8 @@ export default {
             //     file.name,
             //     response => {
             //         /**
-				// 	 * 创建 Apk
-				// 	 */
+            // 	 * 创建 Apk
+            // 	 */
             //         this.postApk(file, response.res.requestUrls[0]);
             //     },
             //     progress => {

@@ -235,7 +235,7 @@ export default {
             } catch (e) {
 
             }
-            this.appName = "appName";
+            this.appName = 'appName';
         },
         async getApks () {
             console.log('czy getapks');

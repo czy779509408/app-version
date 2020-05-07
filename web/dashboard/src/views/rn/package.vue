@@ -364,7 +364,6 @@ export default {
                 }
             };
 
-
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;
                 this.total = response.data.data.total;
