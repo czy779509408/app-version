@@ -32,31 +32,29 @@ public class AppServiceImpl implements AppService {
         BoundHashOperations operations = redisTemplate.boundHashOps(RedisKey.APP_HASH);
         try {
             appSelected = (App) operations.get(tenantAppId);
-            if(appSelected==null){
-                logger.debug("[app]缓存不存在该数据，查询数据库...");
-                App app = new App();
-                app.setTenantAppId(tenantAppId);
-                app.setDelFlag(0);
-                appSelected = appMapper.selectOne(app);
-                if (appSelected != null) {
-                    logger.debug("[app]命中数据库");
-                    operations.put(tenantAppId, appSelected);
-                }
+            if (appSelected == null) {
+                appSelected = selectApp(tenantAppId, operations);
             } else {
                 logger.debug("[app]命中缓存");
             }
             return appSelected;
         } catch (Exception e) {
-            logger.error("查找缓存出错",e);logger.debug("[app]缓存不存在该数据，查询数据库...");
-            App app = new App();
-            app.setTenantAppId(tenantAppId);
-            app.setDelFlag(0);
-            appSelected = appMapper.selectOne(app);
-            if (appSelected != null) {
-                logger.debug("[app]命中数据库");
-                operations.put(tenantAppId, appSelected);
-            }
+            logger.error("查找缓存出错", e);
+            appSelected = selectApp(tenantAppId, operations);
             return appSelected;
         }
+    }
+
+    private App selectApp(String tenantAppId, BoundHashOperations operations){
+        logger.debug("[app]缓存不存在该数据，查询数据库...");
+        App app = new App();
+        app.setTenantAppId(tenantAppId);
+        app.setDelFlag(0);
+        App appSelected = appMapper.selectOne(app);
+        if (appSelected != null) {
+            logger.debug("[app]命中数据库");
+            operations.put(tenantAppId, appSelected);
+        }
+        return appSelected;
     }
 }
