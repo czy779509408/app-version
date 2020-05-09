@@ -5,7 +5,7 @@
                 <Row>
                     <Col span="6">
                         <FormItem label="搜索用户">
-                            <Input v-model="queryParams.phone" placeholder="手机号"/>
+                            <Input v-model="queryParams.phone" placeholder="用户名"/>
                         </FormItem>
                     </Col>
                     <Col span="18">
@@ -43,7 +43,7 @@ export default {
             // table
             columns: [
                 {
-                    title: '手机号',
+                    title: '用户名',
                     key: 'phone',
                     fixed: 'left',
                     width: 130

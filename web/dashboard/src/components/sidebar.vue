@@ -31,7 +31,7 @@
                     <!--</template>-->
                     <!--<MenuItem name="capi-list">接口设置</MenuItem>-->
                 <!--</Submenu>-->
-                <Submenu name="admin"><!--v-if="admin"-->
+                <Submenu name="admin" v-if="admin">
                     <template slot="title">
                         <Icon type="ios-people" />
                         <span>管理员</span>

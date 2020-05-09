@@ -23,7 +23,7 @@
 							</FormItem>
 						</Col>
 						<Col span="12">
-							<FormItem label="操作者手机号">
+							<FormItem label="操作者用户名">
 								<Input v-model="queryParams.phone" placeholder=""/>
 							</FormItem>
 						</Col>
@@ -118,7 +118,7 @@ export default {
                     width: 120
                 },
                 {
-                    title: '操作者手机号',
+                    title: '操作者用户名',
                     key: 'phone',
                     minWidth: 100,
                     width: 120

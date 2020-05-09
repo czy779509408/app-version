@@ -8,7 +8,7 @@
                     <p style="width: 100%; margin-top: 5px;margin-bottom: 20px">登录APP版本管理系统</p>
                     <Form ref="formInline">
                         <FormItem prop="phone">
-                            <Input type="text" v-model="phone" placeholder="请输入手机号" :disabled="loading"  @on-enter="handleSubmit">
+                            <Input type="text" v-model="phone" placeholder="请输入用户名" :disabled="loading"  @on-enter="handleSubmit">
                                 <Icon type="ios-phone-portrait" slot="prepend"></Icon>
                             </Input>
                         </FormItem>
@@ -53,11 +53,11 @@
             }
             this.phone = this.phone.trim()
             this.password = this.password.trim()
-            if(this.phone.length !== 11 || isNaN(Number(this.phone))){
-                this.$Message.warning('请输入正确的手机号');
-                this.loading = false;
-                return;
-            }
+            // if(this.phone.length !== 11 || isNaN(Number(this.phone))){
+            //     this.$Message.warning('请输入正确的手机号');
+            //     this.loading = false;
+            //     return;
+            // }
             if(this.password.length < 6 || this.password.length > 32){
                 this.$Message.warning('密码长度为6-32');
                 this.loading = false;
