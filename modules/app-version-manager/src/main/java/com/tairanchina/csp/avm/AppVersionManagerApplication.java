@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 @EnableScheduling
@@ -26,5 +29,16 @@ public class AppVersionManagerApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(AppVersionManagerApplication.class).run(args);
+    }
+
+    //全局配置跨域
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
     }
 }
