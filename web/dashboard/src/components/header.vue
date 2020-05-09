@@ -13,9 +13,9 @@
                             <span style="float:right;color:#ccc;max-width:100px;overflow: hidden">{{app.tenantAppId}}</span>
                         </Option>
                     </Select>
-                    <Button v-if="app.appName" type='primary' icon="ios-copy-outline" size="small" @click="handelCopyAppId">
-                        复制AppId
-                    </Button>
+                    <!--<Button v-if="app.appName" type='primary' icon="ios-copy-outline" size="small" @click="handelCopyAppId">-->
+                        <!--复制AppId-->
+                    <!--</Button>-->
                 </div>
                 <Dropdown @on-click="dropdownClicked" trigger="click" style="margin-left: 20px;text-align: left">
                     <a href="javascript:void(0)">
@@ -283,7 +283,7 @@ export default {
             box-shadow: none;
         }
         .ivu-select-dropdown {
-            width: 240px !important;
+            width: 160px !important;
         }
     }
     .user-modal{
