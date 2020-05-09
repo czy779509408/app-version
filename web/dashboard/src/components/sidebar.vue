@@ -40,18 +40,18 @@
                     <!--<MenuItem name="admin-user">用户管理</MenuItem>-->
                     <!--<MenuItem name="admin-log">操作日志</MenuItem>-->
                 </Submenu>
-                <!--<Submenu name="manual">-->
-                    <!--<template slot="title">-->
-                        <!--<Icon type="md-document"></Icon>-->
-                        <!--<span>操作手册</span>-->
-                    <!--</template>-->
-                    <!--<MenuItem name="manual-android">Android 版本</MenuItem>-->
-                    <!--<MenuItem name="manual-ios">iOS 版本</MenuItem>-->
-                    <!--<MenuItem name="manual-channel">添加渠道</MenuItem>-->
-                    <!--<MenuItem name="manual-package">添加 RN 包</MenuItem>-->
-                    <!--&lt;!&ndash;<MenuItem name="manual-router">添加 RN 路由</MenuItem>&ndash;&gt;-->
-                    <!--<MenuItem name="manual-type">更新类型说明</MenuItem>-->
-                <!--</Submenu>-->
+                <Submenu name="manual">
+                    <template slot="title">
+                        <Icon type="md-document"></Icon>
+                        <span>操作手册</span>
+                    </template>
+                    <MenuItem name="manual-android">Android 版本</MenuItem>
+                    <MenuItem name="manual-ios">iOS 版本</MenuItem>
+                    <MenuItem name="manual-channel">添加渠道</MenuItem>
+                    <MenuItem name="manual-package">添加 RN 包</MenuItem>
+                    <!--<MenuItem name="manual-router">添加 RN 路由</MenuItem>-->
+                    <MenuItem name="manual-type">更新类型说明</MenuItem>
+                </Submenu>
             </Menu>
         </Sider>
     </div>
