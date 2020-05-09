@@ -321,32 +321,32 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.name !== 'switch-app' && to.name !== 'login' && to.name !== 'register') {
         // 检查是否登录
-        // let loginData = localStorage.getItem('loginData');
-        // if (!loginData) {
-        //     // 未登录
-        //     router.push({
-        //         name: 'switch-app'
-        //     });
-        //     iView.Notice.error({
-        //         title: '未登录',
-        //         desc: '请先登录！'
-        //     });
-        //     return;
-        // }
-        // if (['admin', 'admin-app', 'admin-user', 'admin-log', 'manual-android', 'manual-ios', 'manual-channel', 'manual-router', 'manual-package', 'manual-type'].indexOf(to.name) === -1) {
-        //     let appId = localStorage.getItem('appId');
-        //     if (isNaN(appId) || appId < 1) {
-        //         // 未登录
-        //         router.push({
-        //             name: 'switch-app'
-        //         });
-        //         iView.Notice.error({
-        //             title: '未选择应用',
-        //             desc: '请先选择应用，再进行下一步操作！'
-        //         });
-        //         return;
-        //     }
-        // }
+        let loginData = localStorage.getItem('loginData');
+        if (!loginData) {
+            // 未登录
+            router.push({
+                name: 'switch-app'
+            });
+            iView.Notice.error({
+                title: '未登录',
+                desc: '请先登录！'
+            });
+            return;
+        }
+        if (['admin', 'admin-app', 'admin-user', 'admin-log', 'manual-android', 'manual-ios', 'manual-channel', 'manual-router', 'manual-package', 'manual-type'].indexOf(to.name) === -1) {
+            let appId = localStorage.getItem('appId');
+            if (isNaN(appId) || appId < 1) {
+                // 未登录
+                router.push({
+                    name: 'switch-app'
+                });
+                iView.Notice.error({
+                    title: '未选择应用',
+                    desc: '请先选择应用，再进行下一步操作！'
+                });
+                return;
+            }
+        }
     }
     iView.LoadingBar.start();
     updateSiteTitle(to.meta.pageTitle != null ? to.meta.pageTitle : to.meta.title);

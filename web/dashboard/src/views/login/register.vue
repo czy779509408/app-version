@@ -107,10 +107,11 @@ export default {
                     that.loading =false;
                 })
                 .catch(function (error) {
-                    this.$Notice.error({
-                        title: '注册失败',
-                        desc: error
-                    });
+                    // this.$Notice.error({
+                    //     title: '注册失败',
+                    //     desc: error
+                    // });
+                    console.log('err:' + JSON.stringify(error));
                     that.loading =false;
                 });
             });

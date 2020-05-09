@@ -209,21 +209,21 @@ export default {
     methods: {
         async getAndroid () {
             console.log('czy getAndroid');
-            // let response = await http.get('/android/' + this.androidId);
-            // if (response.data.code !== 200) {
-            //     this.$Notice.error({
-            //         title: '请求失败,请返回',
-            //         desc: response.data.message
-            //     });
-            // }
-            let response = {
-                data: {
-                    code: 200,
-                    data: {
-                        appVersion: '1.2.2'
-                    }
-                }
-            };
+            let response = await http.get('/android/' + this.androidId);
+            if (response.data.code !== 200) {
+                this.$Notice.error({
+                    title: '请求失败,请返回',
+                    desc: response.data.message
+                });
+            }
+            // let response = {
+            //     data: {
+            //         code: 200,
+            //         data: {
+            //             appVersion: '1.2.2'
+            //         }
+            //     }
+            // };
 
             await this.getApks();
 
@@ -240,47 +240,47 @@ export default {
         async getApks () {
             console.log('czy getapks');
             this.inLoading = true;
-            // let response = await http.get('/apk', {
-            //     params: {
-            //         page: this.currentPage,
-            //         pageSize: this.pageSize,
-            //         versionId: this.androidId,
-            //         channelCode: this.queryParams.channelCode,
-            //         md5: this.queryParams.md5,
-            //         deliveryStatus: this.queryParams.deliveryStatus === undefined ? null : this.queryParams.deliveryStatus
-            //     }
-            // });
-            let response = {
-                data: {
-                    code: 200,
-                    data: {
-                        records: [
-                            {
-                                id: 111,
-                                channelCode: 1,
-                                version: '1.1.1',
-                                md5: '11111122',
-                                ossUrl: '',
-                                deliveryStatus: 1,
-                                createdTime: 1588233543000,
-                                createdBy: ''
-                            },
-                            {
-                                id: 22,
-                                channelCode: 2,
-                                version: '1.1.1',
-                                md5: '23333',
-                                ossUrl: '',
-                                deliveryStatus: 2,
-                                createdTime: 1588233543000,
-                                createdBy: 'xxx'
-                            }
-                        ],
-                        total: 20,
-                        current: 1
-                    }
+            let response = await http.get('/apk', {
+                params: {
+                    page: this.currentPage,
+                    pageSize: this.pageSize,
+                    versionId: this.androidId,
+                    channelCode: this.queryParams.channelCode,
+                    md5: this.queryParams.md5,
+                    deliveryStatus: this.queryParams.deliveryStatus === undefined ? null : this.queryParams.deliveryStatus
                 }
-            };
+            });
+            // let response = {
+            //     data: {
+            //         code: 200,
+            //         data: {
+            //             records: [
+            //                 {
+            //                     id: 111,
+            //                     channelCode: 1,
+            //                     version: '1.1.1',
+            //                     md5: '11111122',
+            //                     ossUrl: '',
+            //                     deliveryStatus: 1,
+            //                     createdTime: 1588233543000,
+            //                     createdBy: ''
+            //                 },
+            //                 {
+            //                     id: 22,
+            //                     channelCode: 2,
+            //                     version: '1.1.1',
+            //                     md5: '23333',
+            //                     ossUrl: '',
+            //                     deliveryStatus: 2,
+            //                     createdTime: 1588233543000,
+            //                     createdBy: 'xxx'
+            //                 }
+            //             ],
+            //             total: 20,
+            //             current: 1
+            //         }
+            //     }
+            // };
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;

@@ -227,22 +227,22 @@ export default {
     },
     methods: {
         async getChannel () {
-            // let response = await http.get('/channel/' + this.modalEditId);
-            let response = {
-                'data': {
-                    'code': 200,
-                    'data': {
-                                'id': 1,
-                                'channelName': 'official',
-                                'channelCode': '1111',
-                                'channelType': 'a',
-                                'channelStatus': 1,
-                                'createdTime': 1588233543000,
-                                'createdBy': "某某产品"
-                            }
-                    }
-
-            };
+            let response = await http.get('/channel/' + this.modalEditId);
+            // let response = {
+            //     'data': {
+            //         'code': 200,
+            //         'data': {
+            //                     'id': 1,
+            //                     'channelName': 'official',
+            //                     'channelCode': '1111',
+            //                     'channelType': 'a',
+            //                     'channelStatus': 1,
+            //                     'createdTime': 1588233543000,
+            //                     'createdBy': "某某产品"
+            //                 }
+            //         }
+            //
+            // };
             if (response.data.code === 200) {
                 this.modelForm.channelName = response.data.data.channelName;
                 this.modelForm.channelCode = response.data.data.channelCode;
@@ -254,52 +254,52 @@ export default {
         },
         async getChannels () {
             this.inLoading = true;
-            // let response = await http.get('/channel', {
-            //     params: {
-            //         page: this.currentPage,
-            //         pageSize: this.pageSize,
-            //         channelName: this.queryParams.channelName,
-            //         channelCode: this.queryParams.channelCode
-            //     }
-            // });
-            let response = {
-                'data': {
-                    'code': 200,
-                    'data': {
-                        'total': 50,
-                        'current': 1,
-                        'records': [
-                            {
-                                'id': 1,
-                                'channelName': 'official',
-                                'channelCode': '1111',
-                                'channelType': 'a',
-                                'channelStatus': 1,
-                                'createdTime': 1588233543000,
-                                'createdBy': "某某产品"
-                            },
-                            {
-                                'id': 2,
-                                'channelName': 'baidu',
-                                'channelCode': '2222',
-                                'channelType': 'b',
-                                'channelStatus': 0,
-                                'createdTime': 1588233543000,
-                                'createdBy': "某某"
-                            },
-                            {
-                                'id': 3,
-                                'channelName': '360',
-                                'channelCode': '3333',
-                                'channelType': 'a',
-                                'channelStatus': 2,
-                                'createdTime': 1588233543000,
-                                'createdBy': "某某*"
-                            }
-                        ]
-                    }
+            let response = await http.get('/channel', {
+                params: {
+                    page: this.currentPage,
+                    pageSize: this.pageSize,
+                    channelName: this.queryParams.channelName,
+                    channelCode: this.queryParams.channelCode
                 }
-            };
+            });
+            // let response = {
+            //     'data': {
+            //         'code': 200,
+            //         'data': {
+            //             'total': 50,
+            //             'current': 1,
+            //             'records': [
+            //                 {
+            //                     'id': 1,
+            //                     'channelName': 'official',
+            //                     'channelCode': '1111',
+            //                     'channelType': 'a',
+            //                     'channelStatus': 1,
+            //                     'createdTime': 1588233543000,
+            //                     'createdBy': "某某产品"
+            //                 },
+            //                 {
+            //                     'id': 2,
+            //                     'channelName': 'baidu',
+            //                     'channelCode': '2222',
+            //                     'channelType': 'b',
+            //                     'channelStatus': 0,
+            //                     'createdTime': 1588233543000,
+            //                     'createdBy': "某某"
+            //                 },
+            //                 {
+            //                     'id': 3,
+            //                     'channelName': '360',
+            //                     'channelCode': '3333',
+            //                     'channelType': 'a',
+            //                     'channelStatus': 2,
+            //                     'createdTime': 1588233543000,
+            //                     'createdBy': "某某*"
+            //                 }
+            //             ]
+            //         }
+            //     }
+            // };
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;
                 this.total = response.data.data.total;

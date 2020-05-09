@@ -249,24 +249,24 @@ export default {
         },
         async getPackage() {
             await this.getVersions();
-            // let response = await http.get('package/' + this.rnId);
-            let response = {
-                data: {
-                    code: 200,
-                    data: {
-                        rnName: '',
-                        rnNickName: '',
-                        rnType: 1,
-                        resourceUrl: '',
-                        rnSize: 111,
-                        rnVersion: '',
-                        rnUpdateLog: '',
-                        rnStatus: 1,
-                        versionMin: '',
-                        versionMax: ''
-                    }
-                }
-            };
+            let response = await http.get('package/' + this.rnId);
+            // let response = {
+            //     data: {
+            //         code: 200,
+            //         data: {
+            //             rnName: '',
+            //             rnNickName: '',
+            //             rnType: 1,
+            //             resourceUrl: '',
+            //             rnSize: 111,
+            //             rnVersion: '',
+            //             rnUpdateLog: '',
+            //             rnStatus: 1,
+            //             versionMin: '',
+            //             versionMax: ''
+            //         }
+            //     }
+            // };
 
             if (response.data.code !== 200) {
                 this.$Notice.error({

@@ -154,31 +154,31 @@ export default {
     methods: {
         async getApps () {
             this.inLoading = true;
-            // let response = await http.get('/admin/app/list', {
-            //     params: {
-            //         page: this.currentPage,
-            //         pageSize: this.pageSize,
-            //         appName: this.queryParams.appName
-            //     }
-            // });
-            let response = {
-                'data': {
-                    'code': 200,
-                    'data': {
-                        'total': 9,
-                        'current': 1,
-                        'records': [
-                            {
-                                'id': 1,
-                                'appName': '管家',
-                                'tenantAppId': 211,
-                                'createdTime': 1588233543000,
-                                'createdBy': 'xxx'
-                            }
-                        ]
-                    }
+            let response = await http.get('/admin/app/list', {
+                params: {
+                    page: this.currentPage,
+                    pageSize: this.pageSize,
+                    appName: this.queryParams.appName
                 }
-            };
+            });
+            // let response = {
+            //     'data': {
+            //         'code': 200,
+            //         'data': {
+            //             'total': 9,
+            //             'current': 1,
+            //             'records': [
+            //                 {
+            //                     'id': 1,
+            //                     'appName': '管家',
+            //                     'tenantAppId': 211,
+            //                     'createdTime': 1588233543000,
+            //                     'createdBy': 'xxx'
+            //                 }
+            //             ]
+            //         }
+            //     }
+            // };
 
             if (response.data.code === 200) {
                 this.tableList = response.data.data.records;
