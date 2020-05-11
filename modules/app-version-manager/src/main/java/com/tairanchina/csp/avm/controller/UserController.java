@@ -1,12 +1,11 @@
 package com.tairanchina.csp.avm.controller;
 
+import com.qiniu.util.Auth;
 import com.tairanchina.csp.avm.constants.ServiceResultConstants;
-import com.tairanchina.csp.avm.dto.ChangePasswordReq;
-import com.tairanchina.csp.avm.dto.LoginReq;
-import com.tairanchina.csp.avm.dto.RegisterReq;
-import com.tairanchina.csp.avm.dto.ServiceResult;
+import com.tairanchina.csp.avm.dto.*;
 import com.tairanchina.csp.avm.entity.OperationRecordLog;
 import com.tairanchina.csp.avm.annotation.OperationRecord;
+import com.tairanchina.csp.avm.entity.UploadToken;
 import com.tairanchina.csp.avm.service.UserService;
 import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
 import io.swagger.annotations.Api;
@@ -29,6 +28,11 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping("/uploadToken")
+    public ServiceResult uploadToken(String fileName) {
+        return userService.uploadToken(fileName);
+    }
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")

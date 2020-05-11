@@ -166,7 +166,7 @@ export default {
                                                         style: {
                                                             fontSize: '20px',
                                                             marginBottom: '10px',
-                                                            marginTop: '-20px',
+                                                            marginTop: '0px',
                                                             borderBottom: '1px solid #f7f7f7',
                                                             paddingBottom: '10px'
                                                         }

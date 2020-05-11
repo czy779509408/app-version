@@ -66,10 +66,10 @@
             let that = this;
             http.post('/user/login',{
                 phone: this.phone,
-                password: md5(this.password),
+                password: md5(this.password)
             })
                 .then(resp => {
-                    if(resp.data.code!=200){
+                    if(resp.data.code!==200){
                         this.$Notice.error({
                             title: '登录失败',
                             desc: resp.data.message
@@ -91,7 +91,7 @@
                         title: '登录失败',
                         desc: error
                     });
-                    that.loading =false;
+                    that.loading = false;
                 });
         },
         goToRegister() {

@@ -2,10 +2,15 @@ package com.tairanchina.csp.avm.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ecfront.dew.common.$;
+import com.qiniu.common.QiniuException;
+import com.qiniu.storage.BucketManager;
+import com.qiniu.storage.Configuration;
+import com.qiniu.util.Auth;
 import com.tairanchina.csp.avm.constants.RedisKey;
 import com.tairanchina.csp.avm.constants.ServiceResultConstants;
 import com.tairanchina.csp.avm.dto.JWTSubject;
 import com.tairanchina.csp.avm.dto.ServiceResult;
+import com.tairanchina.csp.avm.entity.UploadToken;
 import com.tairanchina.csp.avm.entity.User;
 import com.tairanchina.csp.avm.mapper.UserMapper;
 import com.tairanchina.csp.avm.utils.StringUtilsExt;
@@ -188,6 +193,42 @@ public class UserServiceImpl implements UserService {
         update.setNickName(nickName);
         Integer result = userMapper.update(update, new EntityWrapper<>(user));
         return ServiceResult.ok(result);
+    }
+
+    /**
+     *
+     * @param key 七牛存储路径 BE/QA/Android/2020/05/11/15-17-09-260/android_delivery_beta/yh_delivery-2.0.3.70.apk
+     * @return
+     */
+    @Override
+    public ServiceResult uploadToken(String key) {
+        String accessKey = "rqLh8BpwLdcGV-176gGueGEK3EAYpE0sg-TaASlT";
+        String secretKey = "UiUBP4KH0zbPa2O15B5VM5RNbPv2fO7r6qHu6olC";
+        String bucket = "iosteampackage";
+        Auth auth = Auth.create(accessKey, secretKey);
+        String upToken = auth.uploadToken(bucket, key);
+        UploadToken uploadToken = new UploadToken();
+        uploadToken.setToken(upToken);
+        return ServiceResult.ok(uploadToken);
+    }
+
+    public ServiceResult deleteFile(String key) {
+        //构造一个带指定 Region 对象的配置类
+        Configuration cfg = new Configuration(com.qiniu.common.Zone.zone0());
+        //...其他参数参考类注释
+        String accessKey = "rqLh8BpwLdcGV-176gGueGEK3EAYpE0sg-TaASlT";
+        String secretKey = "UiUBP4KH0zbPa2O15B5VM5RNbPv2fO7r6qHu6olC";
+        String bucket = "iosteampackage";
+        Auth auth = Auth.create(accessKey, secretKey);
+        BucketManager bucketManager = new BucketManager(auth, cfg);
+        try {
+            bucketManager.delete(bucket, key);
+        } catch (QiniuException ex) {
+            //如果遇到异常，说明删除失败
+            System.err.println(ex.code());
+            System.err.println(ex.response.toString());
+        }
+        return ServiceResult.ok(null);
     }
 
 }

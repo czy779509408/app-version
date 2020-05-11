@@ -14,4 +14,6 @@ public interface UserService {
 
     ServiceResult updateUserNickNameByUserId(String userId, String nickname);
 
+    ServiceResult uploadToken(String fileName);
+
 }

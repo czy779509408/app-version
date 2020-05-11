@@ -57,7 +57,7 @@ export default {
             formRule: {
                 phone: [
                     { required: true, message: '请输入正确的用户名', trigger: 'blur' },
-                    { required: true, validator: validateInput, trigger: 'blur' },
+                    { required: true, validator: validateInput, trigger: 'blur' }
                     // { required: true, type: 'string', min: 11, max:11, message: '请输入正确的手机号', trigger: 'blur'  },
                     // { required: true, pattern: /^[0-9]*$/g, message: '请输入正确的手机号', trigger: 'blur' }
                 ],
@@ -91,12 +91,12 @@ export default {
                     passwordConfirm: md5(this.formItem.passwordConfirm)
                 })
                 .then(resp => {
-                    if(resp.data.code!=200){
+                    if (resp.data.code !== 200) {
                         this.$Notice.error({
                             title: '注册失败',
                             desc: resp.data.message
                         });
-                    }else{
+                    } else {
                         this.$Notice.success({
                             title: '注册成功'
                         });
@@ -104,7 +104,7 @@ export default {
                             name: 'login'
                         });
                     }
-                    that.loading =false;
+                    that.loading = false;
                 })
                 .catch(function (error) {
                     // this.$Notice.error({
@@ -112,12 +112,11 @@ export default {
                     //     desc: error
                     // });
                     console.log('err:' + JSON.stringify(error));
-                    that.loading =false;
+                    that.loading = false;
                 });
             });
-
         },
-        goToLogin() {
+        goToLogin () {
             this.$router.push({
                 name: 'login'
             });

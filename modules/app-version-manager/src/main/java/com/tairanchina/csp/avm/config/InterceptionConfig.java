@@ -38,7 +38,8 @@ public class InterceptionConfig extends WebMvcConfigurerAdapter{
                 "/v2/api-docs",
                 "/swagger-resources/configuration/ui",
                 "/user/register",
-                "/user/login"
+                "/user/login",
+                "/user/uploadToken"
         );
         registry.addInterceptor(adminInterceptor).addPathPatterns(
                 "/admin/*",
