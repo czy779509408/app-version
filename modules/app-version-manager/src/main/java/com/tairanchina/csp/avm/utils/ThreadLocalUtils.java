@@ -10,4 +10,5 @@ import com.tairanchina.csp.avm.entity.LoginInfo;
 public class ThreadLocalUtils {
     public static final ThreadLocal<LoginInfo> USER_THREAD_LOCAL = new ThreadLocal<>();
 
+    public static final String USER_ID = "1";
 }

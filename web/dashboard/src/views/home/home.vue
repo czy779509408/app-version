@@ -53,12 +53,12 @@ export default {
         };
     },
     async created () {
-        if (this.isLogin === false) {
-            this.$router.push({
-                name: 'login'
-            });
-            return false;
-        }
+        // if (this.isLogin === false) {
+        //     this.$router.push({
+        //         name: 'login'
+        //     });
+        //     return false;
+        // }
 
         let apps = await getApps();
         if (apps) { this.appList = apps; }

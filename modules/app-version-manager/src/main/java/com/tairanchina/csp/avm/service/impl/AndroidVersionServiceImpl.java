@@ -41,7 +41,7 @@ public class AndroidVersionServiceImpl implements AndroidVersionService {
         if (checkVersionExist(androidVersion)){
             return ServiceResultConstants.VERSION_EXISTS;
         }
-        androidVersion.setCreatedBy(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        androidVersion.setCreatedBy(ThreadLocalUtils.USER_ID);
         androidVersion.setAppId(ThreadLocalUtils.USER_THREAD_LOCAL.get().getAppId());
         Integer insert = androidVersionMapper.insert(androidVersion);
         if (insert > 0) {

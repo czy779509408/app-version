@@ -46,8 +46,9 @@ public class AppServiceImpl implements AppService{
 
     @Override
     public ServiceResult getAppListWithUserId(int page, int pageSize, String userId) {
+        userId = "1";
         EntityWrapper<UserAppRel> entityWrapper = new EntityWrapper<>();
-        entityWrapper.and().eq("user_id", userId);
+//        entityWrapper.and().eq("user_id", userId);
         Page<UserAppRel> userAppRelPage = new Page<>();
         userAppRelPage.setCurrent(page);
         userAppRelPage.setSize(pageSize);
@@ -75,6 +76,8 @@ public class AppServiceImpl implements AppService{
     @Override
     @Transactional
     public ServiceResult createApp(String appName, String tenantAppId) {
+        String userId = "1";
+
         EntityWrapper<App> wrapper = new EntityWrapper<>();
         wrapper.andNew().eq("app_name", appName).or().eq("tenant_app_id", tenantAppId);
         wrapper.andNew().eq("del_flag", 0);
@@ -85,18 +88,18 @@ public class AppServiceImpl implements AppService{
         app.setDelFlag(0);
         app.setTenantAppId(tenantAppId);
         app.setAppName(appName);
-        app.setCreatedBy(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        app.setCreatedBy(userId);
         Integer insert = appMapper.insert(app);
 
         UserAppRel userAppRel = new UserAppRel();
         userAppRel.setAppId(app.getId());
-        userAppRel.setUserId(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        userAppRel.setUserId(userId);
         Integer insert2 = userAppRelMapper.insert(userAppRel);
         logger.info("创建App[{}]成功", appName);
         //创建官方渠道
         Channel channel = new Channel();
         channel.setAppId(app.getId());
-        channel.setCreatedBy(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        channel.setCreatedBy(userId);
         channel.setChannelCode("official");
         channel.setChannelName("官方渠道");
         channel.setChannelStatus(1);
@@ -111,6 +114,6 @@ public class AppServiceImpl implements AppService{
 
     @Override
     public ServiceResult getMyApp() {
-        return adminService.listBindApp(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        return adminService.listBindApp("1");
     }
 }

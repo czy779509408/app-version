@@ -33,7 +33,7 @@ public class LoginInfo {
     }
 
     public String getUserId() {
-        return userId;
+        return "1";
     }
 
     public void setUserId(String userId) {
@@ -42,7 +42,7 @@ public class LoginInfo {
 
 
     public boolean isAdmin() {
-        return admin;
+        return true;
     }
 
     public LoginInfo setAdmin(boolean admin) {
@@ -51,7 +51,7 @@ public class LoginInfo {
     }
 
     public String getNickName() {
-        return nickName;
+        return "admin";
     }
 
     public void setNickName(String nickName) {
@@ -59,7 +59,7 @@ public class LoginInfo {
     }
 
     public String getPhone() {
-        return phone;
+        return "admin";
     }
 
     public void setPhone(String phone) {

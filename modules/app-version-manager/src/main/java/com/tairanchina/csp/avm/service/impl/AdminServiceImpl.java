@@ -13,10 +13,8 @@ import com.tairanchina.csp.avm.entity.UserAppRel;
 import com.tairanchina.csp.avm.mapper.AppMapper;
 import com.tairanchina.csp.avm.mapper.ChannelMapper;
 import com.tairanchina.csp.avm.mapper.UserAppRelMapper;
-import com.tairanchina.csp.avm.mapper.UserMapper;
 import com.tairanchina.csp.avm.service.AdminService;
 import com.tairanchina.csp.avm.service.BasicService;
-import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,9 +47,6 @@ public class AdminServiceImpl implements AdminService {
     private UserAppRelMapper userAppRelMapper;
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
     private ChannelMapper channelMapper;
 
     @Autowired
@@ -59,6 +54,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ServiceResult bindUserAndApp(String userId, int appId) {
+        userId = "1";
         App app = appMapper.selectById(appId);
         if (app == null) {
             return ServiceResultConstants.APP_NOT_EXISTS;
@@ -84,6 +80,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ServiceResult unbindUserAndApp(String userId, int appId) {
+        userId = "1";
         logger.info("解绑用户[{}]与App[{}]", userId, appId);
         UserAppRel userAppRel = new UserAppRel();
         userAppRel.setAppId(appId);
@@ -109,11 +106,12 @@ public class AdminServiceImpl implements AdminService {
         if (!appMapper.selectList(wrapper).isEmpty()) {
             return ServiceResultConstants.TENANT_APP_ID_OR_APP_NAME_EXISTS;
         }
+        String userId = "1";
         App app = new App();
         app.setDelFlag(0);
         app.setTenantAppId(tenantAppId);
         app.setAppName(appName);
-        app.setCreatedBy(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+        app.setCreatedBy(userId);
         Integer insert = appMapper.insert(app);
 
         if (insert > 0) {
@@ -121,7 +119,7 @@ public class AdminServiceImpl implements AdminService {
             //创建官方渠道
             Channel channel = new Channel();
             channel.setAppId(app.getId());
-            channel.setCreatedBy(ThreadLocalUtils.USER_THREAD_LOCAL.get().getUserId());
+            channel.setCreatedBy(userId);
             channel.setChannelCode("official");
             channel.setChannelName("官方渠道");
             channel.setChannelStatus(1);
@@ -232,7 +230,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public ServiceResult listAppWithBindInfo(int page, int pageSize, EntityWrapper<App> wrapper, String userId) {
+    public ServiceResult listAppWithBindInfo(int page, int pageSize, EntityWrapper<App> wrapper, String userid) {
+        final String userId = "1";
+
         Page<App> pageEntity = new Page<>();
         pageEntity.setSize(pageSize);
         pageEntity.setCurrent(page);
@@ -265,6 +265,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ServiceResult listBindApp(String userId) {
+        userId = "1";
+
         ArrayList<HashMap> hashMaps = userAppRelMapper.listBindApp(userId);
         List<HashMap> collect = hashMaps.stream().map(mapper -> {
             HashMap<String, Object> map = new HashMap<>();
@@ -281,19 +283,20 @@ public class AdminServiceImpl implements AdminService {
         Page<User> pageEntity = new Page<>();
         pageEntity.setSize(pageSize);
         pageEntity.setCurrent(page);
-        pageEntity.setRecords(userMapper.selectPage(pageEntity, wrapper));
+//        pageEntity.setRecords(userMapper.selectPage(pageEntity, wrapper));
         return ServiceResult.ok(pageEntity);
     }
 
     @Override
     public ServiceResult isAdmin(String userId) {
-        User user1 = new User();
-        user1.setUserId(userId);
-        List<User> users = userMapper.selectList(new EntityWrapper<>(user1));
-        if (!users.isEmpty() && users.get(0).getIsAdmin() == 1) {
-            return ServiceResult.ok(true);
-        } else {
-            return ServiceResult.ok(false);
-        }
+        return ServiceResult.ok(true);
+//        User user1 = new User();
+//        user1.setUserId(userId);
+//        List<User> users = userMapper.selectList(new EntityWrapper<>(user1));
+//        if (!users.isEmpty() && users.get(0).getIsAdmin() == 1) {
+//            return ServiceResult.ok(true);
+//        } else {
+//            return ServiceResult.ok(false);
+//        }
     }
 }

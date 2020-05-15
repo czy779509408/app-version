@@ -39,30 +39,30 @@ public class AppInterceptor extends HandlerInterceptorAdapter {
         UserAppRel userAppRel = new UserAppRel();
         userAppRel.setAppId(appId);
         userAppRel.setUserId(userId);
-        if(appId==null){
+        if (appId == null) {
             this.print(response, ServiceResultConstants.NO_APP_ID.toString());
             return false;
         }
         logger.info("appId={},userId={}", appId, userId);
-        UserAppRel userAppRel1 = userAppRelMapper.selectOne(userAppRel);
-        if (userAppRel1 != null) {
-            //查询该APP是否可用
-            App app = appMapper.selectById(appId);
-            if (app != null) {
-                if (app.getDelFlag() == 0) {
-                    return true;
-                } else {
-                    this.print(response, ServiceResultConstants.APP_DELETED.toString());
-                    return false;
-                }
+//        UserAppRel userAppRel1 = userAppRelMapper.selectOne(userAppRel);
+//        if (userAppRel1 != null) {
+        //查询该APP是否可用
+        App app = appMapper.selectById(appId);
+        if (app != null) {
+            if (app.getDelFlag() == 0) {
+                return true;
             } else {
-                this.print(response, ServiceResultConstants.APP_NOT_EXISTS.toString());
+                this.print(response, ServiceResultConstants.APP_DELETED.toString());
                 return false;
             }
         } else {
-            this.print(response, ServiceResultConstants.NO_APP_PM.toString());
+            this.print(response, ServiceResultConstants.APP_NOT_EXISTS.toString());
             return false;
         }
+//        } else {
+//            this.print(response, ServiceResultConstants.NO_APP_PM.toString());
+//            return false;
+//        }
     }
 
 

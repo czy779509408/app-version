@@ -27,30 +27,30 @@ public class AdminServiceTest extends BaseTest {
 
     @Test
     public void bindUserAndApp() throws Exception {
-        String userId = "test";
-        int appId = 31;
-        ServiceResult result = adminService.bindUserAndApp(userId, appId);
-        if (result.getData() != null) {
-            logger.info(result.getData().toString());
-        }
-
-        appId = 44444444;
-        result = adminService.bindUserAndApp(userId, appId);
-        if (result.getData() != null) {
-            logger.info(result.getData().toString());
-        }
+//        String userId = "test";
+//        int appId = 31;
+//        ServiceResult result = adminService.bindUserAndApp(userId, appId);
+//        if (result.getData() != null) {
+//            logger.info(result.getData().toString());
+//        }
+//
+//        appId = 44444444;
+//        result = adminService.bindUserAndApp(userId, appId);
+//        if (result.getData() != null) {
+//            logger.info(result.getData().toString());
+//        }
     }
 
     @Test
     public void unbindUserAndApp() throws Exception {
-        String userId = "test";
-        int appId = 31;
-        ServiceResult result = adminService.unbindUserAndApp(userId, appId);
-        if (result.getData() != null) {
-
-            logger.info(result.getData().toString());
-
-        }//todo ?  用户和APP未绑定，调用方法提示 {"code":10002,"message":"数据库插入错误","data":null}
+//        String userId = "test";
+//        int appId = 31;
+//        ServiceResult result = adminService.unbindUserAndApp(userId, appId);
+//        if (result.getData() != null) {
+//
+//            logger.info(result.getData().toString());
+//
+//        }//todo ?  用户和APP未绑定，调用方法提示 {"code":10002,"message":"数据库插入错误","data":null}
     }
 
 

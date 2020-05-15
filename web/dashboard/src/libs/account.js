@@ -7,7 +7,7 @@ import Vue from 'vue';
  * @returns {boolean}
  */
 export const isAdmin = () => {
-    return localStorage.getItem('admin') === 'true';
+    return true;
 };
 
 export const isLogin = () => {
@@ -47,7 +47,24 @@ export const setUserNickName = nickName => {
  * @returns {*}
  */
 export const getUser = () => {
-    return getLocalStoreage('loginData');
+    // map.put("token", "token");
+    //         map.put("ident", phone);
+    //         map.put("isNew", false);
+    //         map.put("nickName", "admin");
+    //         map.put("userId", "1");
+    //         map.put("username", "admin");
+    //         map.put("warning", false);
+    //         map.put("isAdmin", 1);
+    return {
+        token: 'token',
+        isNew: false,
+        nickName: 'admin',
+        userId: 1,
+        username: 'admin',
+        isAdmin: 1,
+        warning: false
+    };
+    // return getLocalStoreage('loginData');
 };
 
 /**

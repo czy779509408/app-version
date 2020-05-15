@@ -7,6 +7,6 @@
     <select id="listBindApp" parameterType="java.lang.String" resultType="java.util.HashMap">
         select * from user_app_rel
         left join app on app.id = user_app_rel.app_id
-        where user_id = #{userId} and app.del_flag = 0
+        where app.del_flag = 0
     </select>
 </mapper>

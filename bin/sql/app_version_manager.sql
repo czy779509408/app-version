@@ -178,19 +178,7 @@ CREATE TABLE `rn_package`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'RN包版本明细表' ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `rn_route`;
-
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `user_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户ID',
-  `phone` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '手机号',
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
-  `nick_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '昵称',
-  `first_login_time` timestamp(0) NOT NULL COMMENT '创建时间',
-  `is_admin` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否是超级管理员',
-  PRIMARY KEY (`user_id`) USING BTREE,
-  UNIQUE INDEX `idx_phone`(`phone`) USING BTREE COMMENT '手机号唯一索引'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `user_app_rel`;
 CREATE TABLE `user_app_rel`  (

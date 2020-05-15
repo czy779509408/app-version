@@ -1,10 +1,6 @@
 package com.tairanchina.csp.avm.interceptor;
 
-import com.tairanchina.csp.avm.constants.ServiceResultConstants;
-import com.tairanchina.csp.avm.entity.LoginInfo;
-import com.tairanchina.csp.avm.entity.User;
 import com.tairanchina.csp.avm.mapper.UserMapper;
-import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +19,20 @@ import java.io.IOException;
 public class AdminInterceptor extends HandlerInterceptorAdapter {
     private static final Logger logger = LoggerFactory.getLogger(AdminInterceptor.class);
 
-    @Autowired
-    private UserMapper userMapper;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        LoginInfo loginInfo = ThreadLocalUtils.USER_THREAD_LOCAL.get();
-        String userId = loginInfo.getUserId();
-        User user = new User();
-        user.setUserId(userId);
-        User user1 = userMapper.selectOne(user);
-        if(user1!=null && user1.getIsAdmin() == 1){
-            return true;
-        }else{
-            this.print(response, ServiceResultConstants.NO_ADMIN.toString());
-            return false;
-        }
+        return true;
+//        LoginInfo loginInfo = ThreadLocalUtils.USER_THREAD_LOCAL.get();
+//        String userId = loginInfo.getUserId();
+//        User user = new User();
+//        user.setUserId(userId);
+//        User user1 = userMapper.selectOne(user);
+//        if(user1!=null && user1.getIsAdmin() == 1){
+//            return true;
+//        }else{
+//            this.print(response, ServiceResultConstants.NO_ADMIN.toString());
+//            return false;
+//        }
     }
 
 

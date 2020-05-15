@@ -1,6 +1,5 @@
 package com.tairanchina.csp.avm.interceptor;
 
-import com.tairanchina.csp.avm.constants.ServiceResultConstants;
 import com.tairanchina.csp.avm.entity.LoginInfo;
 import com.tairanchina.csp.avm.entity.User;
 import com.tairanchina.csp.avm.service.UserService;
@@ -35,47 +34,41 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Authorization, appId, serviceId");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         String authorization = request.getHeader("Authorization");
-        if (StringUtils.isEmpty(authorization)) {
-            this.print(response, ServiceResult.failed(1003, "没有权限访问该地址，请先登录").toString());
-            return false;
-        }
-        if (authorization.startsWith("Bearer ")) {
-            String substring = authorization.substring(7);
-            try {
-                ServiceResult validate = userService.validate(substring);
-                if (validate.getCode() == 200) {
-                    Integer appId = null;
-                    String appIdFromHeader = request.getHeader("appId");
-                    if (StringUtils.isNotBlank(appIdFromHeader)) {
-                        try {
-                            appId = Integer.valueOf(appIdFromHeader);
-                        } catch (NumberFormatException e) {
-                            logger.error("AppID转换错误", e);
-                        }
+//        if (StringUtils.isEmpty(authorization)) {
+//            this.print(response, ServiceResult.failed(1003, "没有权限访问该地址，请先登录").toString());
+//            return false;
+//        }
+        try {
+            ServiceResult validate = userService.validate("");
+            if (validate.getCode() == 200) {
+                Integer appId = null;
+                String appIdFromHeader = request.getHeader("appId");
+                if (StringUtils.isNotBlank(appIdFromHeader)) {
+                    try {
+                        appId = Integer.valueOf(appIdFromHeader);
+                    } catch (NumberFormatException e) {
+                        logger.error("AppID转换错误", e);
                     }
-                    User userInDb = (User) validate.getData();
-                    String userId = userInDb.getUserId();
-                    String nickName = userInDb.getNickName();
-                    String phone = userInDb.getPhone();
-                    boolean isAdmin = userInDb.getIsAdmin() == 1;
-                    logger.info("appId = {},userId = {}", appId, userId);
-                    logger.info("method = {},requestUri = {}", request.getMethod(), request.getRequestURI() + "?" + request.getQueryString());
-                    logger.info("用户名：[{}]，手机号：[{}]", nickName, phone);
-                    LoginInfo loginInfo = new LoginInfo(appId, userId, isAdmin);
-                    loginInfo.setNickName(nickName);
-                    loginInfo.setPhone(phone);
-                    ThreadLocalUtils.USER_THREAD_LOCAL.set(loginInfo);
-                    return true;
-                } else {
-                    this.print(response, validate.toString());
                 }
-            } catch (Exception e) {
-                logger.info("检测授权失败：{}", e.getMessage());
-                this.print(response, ServiceResult.failed(1002, e.getMessage()).toString());
+                User userInDb = (User) validate.getData();
+                String userId = userInDb.getUserId();
+                String nickName = userInDb.getNickName();
+                String phone = userInDb.getPhone();
+                boolean isAdmin = userInDb.getIsAdmin() == 1;
+                logger.info("appId = {},userId = {}", appId, userId);
+                logger.info("method = {},requestUri = {}", request.getMethod(), request.getRequestURI() + "?" + request.getQueryString());
+                logger.info("用户名：[{}]，手机号：[{}]", nickName, phone);
+                LoginInfo loginInfo = new LoginInfo(appId, userId, isAdmin);
+                loginInfo.setNickName(nickName);
+                loginInfo.setPhone(phone);
+                ThreadLocalUtils.USER_THREAD_LOCAL.set(loginInfo);
+                return true;
+            } else {
+                this.print(response, validate.toString());
             }
-        } else {
-            logger.info("没有找到用户信息");
-            this.print(response, ServiceResultConstants.NO_LOGIN.toString());
+        } catch (Exception e) {
+            logger.info("检测授权失败：{}", e.getMessage());
+            this.print(response, ServiceResult.failed(1002, e.getMessage()).toString());
         }
         return false;
     }
