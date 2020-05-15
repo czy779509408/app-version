@@ -1,37 +1,19 @@
 <template>
     <div class="header">
-        <div class="header__logo">
-            <img class="logo" src="@/images/logo1x.png"/>
-        </div>
+        <!--<div class="header__logo">-->
+            <!--<img class="logo" src="@/images/logo1x.png"/>-->
+        <!--</div>-->
         <div class="header-right">
-            <template v-if="loginData">
-                <div class="header-switch-app">
-                    <span v-if="app.appName">当前正在管理的应用是：</span>
-                    <Select v-model="appId" @on-change="handelChangeApp">
-                        <Option v-for="app in appList" :value="app.appId" :key="app.appId" :label="app.appName">
-                            <span>{{ app.appName }}</span>
-                            <span style="float:right;color:#ccc;max-width:100px;overflow: hidden">{{app.tenantAppId}}</span>
-                        </Option>
-                    </Select>
-                    <!--<Button v-if="app.appName" type='primary' icon="ios-copy-outline" size="small" @click="handelCopyAppId">-->
-                        <!--复制AppId-->
-                    <!--</Button>-->
-                </div>
-                <Dropdown @on-click="dropdownClicked" trigger="click" style="margin-left: 20px;text-align: left">
-                    <a href="javascript:void(0)">
-                        {{hasValue(loginData.nickName) ? loginData.nickName : loginData.username}}
-                        <Icon type="ios-arrow-down" />
-                    </a>
-                    <DropdownMenu slot="list">
-                        <DropdownItem name="setting">设置</DropdownItem>
-                        <DropdownItem name="changePassword">修改密码</DropdownItem>
-                        <DropdownItem name="logout">退出登录</DropdownItem>
-                    </DropdownMenu>
-                </Dropdown>
-            </template>
-            <a v-else @click="goToLogin">
-                登录
-            </a>
+            <div class="header-switch-app">
+                <span v-if="app.appName">当前正在管理的应用是：</span>
+                <Select v-model="appId" @on-change="handelChangeApp">
+                    <Option v-for="app in appList" :value="app.appId" :key="app.appId" :label="app.appName">
+                        <span>{{ app.appName }}</span>
+                        <span style="float:right;color:#ccc;max-width:100px;overflow: hidden">{{app.tenantAppId}}</span>
+                    </Option>
+                </Select>
+            </div>
+
         </div>
         <Modal v-model="inSettingUser" title="用户修改" class="user-modal">
             <Form :model="settingForm" ref="settingForm" :rules="settingFormRule">

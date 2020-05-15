@@ -217,28 +217,6 @@ const router = new VueRouter({
             ]
         },
         {
-            path: '/capi',
-            name: 'capi',
-            meta: {
-                title: '自定义接口'
-            },
-            redirect: {
-                name: 'capi-list'
-            },
-            component: Entry,
-            children: [
-                {
-                    path: 'list',
-                    name: 'capi-list',
-                    meta: {
-                        title: '',
-                        pageTitle: '自定义接口'
-                    },
-                    component: (resolve) => require(['./views/capi/list.vue'], resolve)
-                }
-            ]
-        },
-        {
             path: '/manual',
             name: 'manual',
             meta: {
@@ -298,23 +276,23 @@ const router = new VueRouter({
                     component: (resolve) => require(['./views/manual/mRouter.vue'], resolve)
                 }
             ]
-        },
-        {
-            path: '/login',
-            name: 'login',
-            meta: {
-                title: '登录'
-            },
-            component: (resolve) => require(['./views/login/index.vue'], resolve)
-        },
-        {
-            path: '/register',
-            name: 'register',
-            meta: {
-                title: '注册'
-            },
-            component: (resolve) => require(['./views/login/register.vue'], resolve)
         }
+        // {
+        //     path: '/login',
+        //     name: 'login',
+        //     meta: {
+        //         title: '登录'
+        //     },
+        //     component: (resolve) => require(['./views/login/index.vue'], resolve)
+        // },
+        // {
+        //     path: '/register',
+        //     name: 'register',
+        //     meta: {
+        //         title: '注册'
+        //     },
+        //     component: (resolve) => require(['./views/login/register.vue'], resolve)
+        // }
     ]
 });
 
