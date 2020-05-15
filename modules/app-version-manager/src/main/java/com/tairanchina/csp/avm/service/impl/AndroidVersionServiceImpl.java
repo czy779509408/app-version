@@ -6,16 +6,13 @@ import com.tairanchina.csp.avm.constants.ServiceResultConstants;
 import com.tairanchina.csp.avm.dto.ServiceResult;
 import com.tairanchina.csp.avm.entity.AndroidVersion;
 import com.tairanchina.csp.avm.entity.Apk;
-import com.tairanchina.csp.avm.enums.ChatBotEventType;
 import com.tairanchina.csp.avm.mapper.AndroidVersionMapper;
 import com.tairanchina.csp.avm.mapper.ApkMapper;
-import com.tairanchina.csp.avm.mapper.ChannelMapper;
-import com.tairanchina.csp.avm.utils.VersionCompareUtils;
-import com.tairanchina.csp.avm.wapper.ExtWrapper;
 import com.tairanchina.csp.avm.service.AndroidVersionService;
 import com.tairanchina.csp.avm.service.BasicService;
-import com.tairanchina.csp.avm.service.ChatBotService;
 import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
+import com.tairanchina.csp.avm.utils.VersionCompareUtils;
+import com.tairanchina.csp.avm.wapper.ExtWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +35,6 @@ public class AndroidVersionServiceImpl implements AndroidVersionService {
     @Autowired
     private BasicService basicService;
 
-    @Autowired
-    private ChatBotService chatBotService;
-
     @Override
     public ServiceResult createAndroidVersion(AndroidVersion androidVersion) {
         //校验安卓版本是否已存在
@@ -51,7 +45,6 @@ public class AndroidVersionServiceImpl implements AndroidVersionService {
         androidVersion.setAppId(ThreadLocalUtils.USER_THREAD_LOCAL.get().getAppId());
         Integer insert = androidVersionMapper.insert(androidVersion);
         if (insert > 0) {
-            chatBotService.sendMarkdown(ChatBotEventType.ANDROID_VERSION_CREATED, "创建新的Android版本提醒",makeMarkdown(androidVersion));
             return ServiceResult.ok(androidVersion);
         } else {
             return ServiceResultConstants.DB_ERROR;

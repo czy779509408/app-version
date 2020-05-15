@@ -111,43 +111,8 @@ CREATE TABLE `channel`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `chat_bot`;
-CREATE TABLE `chat_bot`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '机器人名称',
-  `webhook` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '钉钉群机器人Webhook地址',
-  `app_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '关联的APP',
-  `active_event` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '绑定的事件',
-  `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '创建人',
-  `created_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '更新人',
-  `updated_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
-  `del_flag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
 
 DROP TABLE IF EXISTS `custom_api`;
-CREATE TABLE `custom_api`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `app_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'APPID',
-  `custom_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '自定义配置的名称',
-  `ios_enabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'iOS是否开启',
-  `android_enabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '安卓是否开启',
-  `custom_content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '配置内容',
-  `custom_key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '接口的key',
-  `custom_status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '状态 0:关闭 1:线上开启 2:测试需要',
-  `ios_min` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'iOS最小版本',
-  `ios_max` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'iOS最大版本',
-  `android_min` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '安卓最小版本',
-  `android_max` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '安卓最大版本',
-  `created_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '创建人',
-  `del_flag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除',
-  `updated_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
 
 DROP TABLE IF EXISTS `ios_version`;
 CREATE TABLE `ios_version`  (
@@ -213,26 +178,6 @@ CREATE TABLE `rn_package`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'RN包版本明细表' ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `rn_route`;
-CREATE TABLE `rn_route`  (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '路由id主键',
-  `app_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'appid',
-  `route_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '路由通用昵称',
-  `route_key` varchar(3000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '被拦截URL（约定）',
-  `route_value` varchar(3000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '目标URL',
-  `ios_enabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否iOS开启',
-  `android_enabled` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否android开启',
-  `route_status` tinyint(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '路由状态 0:关闭 1:线上开启 2:测试需要',
-  `created_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `updated_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '更新人',
-  `ios_min` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'ios最小版本',
-  `ios_max` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'ios最大版本',
-  `android_min` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'android最小版本',
-  `android_max` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'android最大版本',
-  `del_flag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'RN路由地址明细表' ROW_FORMAT = Dynamic;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (

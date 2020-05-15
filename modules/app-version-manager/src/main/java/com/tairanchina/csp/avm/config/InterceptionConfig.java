@@ -45,9 +45,7 @@ public class InterceptionConfig extends WebMvcConfigurerAdapter{
                 "/admin/*",
                 "/admin/*/**",
                 "/log/*",
-                "/log/*/**",
-                "/chatbot/*",
-                "/chatbot/*/**"
+                "/log/*/**"
         ).excludePathPatterns(
                 "/admin/isAdmin"
         );
@@ -67,9 +65,6 @@ public class InterceptionConfig extends WebMvcConfigurerAdapter{
                 "/package",
                 "/package/*",
                 "/package/*/**",
-                "/capi",
-                "/capi/*",
-                "/capi/*/**",
                 "/white",
                 "/white/*",
                 "/white/*/**"

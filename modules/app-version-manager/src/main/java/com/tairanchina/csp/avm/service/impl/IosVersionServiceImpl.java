@@ -5,14 +5,12 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.tairanchina.csp.avm.constants.ServiceResultConstants;
 import com.tairanchina.csp.avm.dto.ServiceResult;
 import com.tairanchina.csp.avm.entity.IosVersion;
-import com.tairanchina.csp.avm.enums.ChatBotEventType;
 import com.tairanchina.csp.avm.mapper.IosVersionMapper;
-import com.tairanchina.csp.avm.utils.VersionCompareUtils;
-import com.tairanchina.csp.avm.wapper.ExtWrapper;
 import com.tairanchina.csp.avm.service.BasicService;
-import com.tairanchina.csp.avm.service.ChatBotService;
 import com.tairanchina.csp.avm.service.IosVersionService;
 import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
+import com.tairanchina.csp.avm.utils.VersionCompareUtils;
+import com.tairanchina.csp.avm.wapper.ExtWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +29,6 @@ public class IosVersionServiceImpl implements IosVersionService {
     @Autowired
     private BasicService basicService;
 
-    @Autowired
-    private ChatBotService chatBotService;
 
     @Override
     public ServiceResult create(IosVersion iosVersion) {
@@ -43,7 +39,6 @@ public class IosVersionServiceImpl implements IosVersionService {
         }
         Integer insert = iosVersionMapper.insert(iosVersion);
         if (insert > 0) {
-            chatBotService.sendMarkdown(ChatBotEventType.IOS_VERSION_CREATED, "创建新的iOS版本提醒",makeMarkdown(iosVersion));
             return ServiceResult.ok(iosVersion);
         } else {
             return ServiceResultConstants.DB_ERROR;
