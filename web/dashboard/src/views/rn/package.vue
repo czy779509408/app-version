@@ -104,7 +104,7 @@ export default {
                     }
                 },
                 {
-                    title: '版本区间',
+                    title: 'App版本区间',
                     minWidth: 180,
                     render: (h, params) => {
                         return h(

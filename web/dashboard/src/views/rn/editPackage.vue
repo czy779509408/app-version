@@ -17,7 +17,7 @@
                     <Radio :label="1">{{ 1 | deviceFilter}}</Radio>
                 </RadioGroup>
             </FormItem>
-            <FormItem label="版本区间" prop="version">
+            <FormItem label="App版本区间" prop="version">
                 <Row>
                     <Col span="10">
                         <AutoComplete

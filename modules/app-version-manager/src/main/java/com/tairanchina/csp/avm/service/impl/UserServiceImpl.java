@@ -197,6 +197,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      *
+     * https://developer.qiniu.com/kodo/sdk/1239/java
      * @param key 七牛存储路径 BE/QA/Android/2020/05/11/15-17-09-260/android_delivery_beta/yh_delivery-2.0.3.70.apk
      * @return
      */
