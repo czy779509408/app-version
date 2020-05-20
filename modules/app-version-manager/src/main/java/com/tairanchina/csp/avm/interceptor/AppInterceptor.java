@@ -5,7 +5,6 @@ import com.tairanchina.csp.avm.entity.App;
 import com.tairanchina.csp.avm.entity.LoginInfo;
 import com.tairanchina.csp.avm.entity.UserAppRel;
 import com.tairanchina.csp.avm.mapper.AppMapper;
-import com.tairanchina.csp.avm.mapper.UserAppRelMapper;
 import com.tairanchina.csp.avm.utils.ThreadLocalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +23,6 @@ import java.io.IOException;
 @Component
 public class AppInterceptor extends HandlerInterceptorAdapter {
     private static final Logger logger = LoggerFactory.getLogger(AppInterceptor.class);
-
-    @Autowired
-    private UserAppRelMapper userAppRelMapper;
 
     @Autowired
     private AppMapper appMapper;
